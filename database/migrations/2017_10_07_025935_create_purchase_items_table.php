@@ -15,7 +15,16 @@ class CreatePurchaseItemsTable extends Migration
     {
         Schema::create('purchase_items', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('purchase_order_ref');
+            $table->string('purchase_sku');
+            $table->integer('quantity');
             $table->timestamps();
+
+            $table->foreign('purchase_order_ref')->refrences('ref')
+                    ->on('purchase_orders')
+                    ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('product_sku')->refrences('sku')
+                    ->on('products')->onUpdate('cascade');
         });
     }
 

@@ -14,7 +14,10 @@ class CreateSaleOrdersTable extends Migration
     public function up()
     {
         Schema::create('sale_orders', function (Blueprint $table) {
-            $table->increments('id');
+            $table->string('ref')->primary();
+            $table->date('date');
+            $table->string('orderer');
+            $table->boolean('paid');
             $table->timestamps();
         });
     }

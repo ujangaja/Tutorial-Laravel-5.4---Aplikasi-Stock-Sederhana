@@ -14,7 +14,10 @@ class CreatePurchaseOrdersTable extends Migration
     public function up()
     {
         Schema::create('purchase_orders', function (Blueprint $table) {
-            $table->increments('id');
+            $table->string('ref')->primary();
+            $table->date('date');
+            $table->string('order');
+            $table->boolean('received');
             $table->timestamps();
         });
     }

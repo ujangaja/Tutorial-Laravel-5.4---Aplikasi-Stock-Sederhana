@@ -15,7 +15,17 @@ class CreateSaleItemsTable extends Migration
     {
         Schema::create('sale_items', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('sale_order_ref');
+            $table->string('product_sku');
+            $table->integer('quantity');
             $table->timestamps();
+
+
+            $table->foreign('sale_order_ref')->refrences('ref')
+                    ->om('sale_erders')
+                    ->onUpdate('cascade')->ondelete('cascade');
+            $table->foreign('product_sku')->refrences('sku')
+                    ->on('product')->onUpdate('cascade');
         });
     }
 
